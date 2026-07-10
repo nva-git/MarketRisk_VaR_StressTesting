@@ -45,9 +45,10 @@ parametric_var_usd = AUM_USD * parametric_var_percent
 portfolio_daily_returns = daily_returns.dot(weights)
 
 #backtesting
-violations = portfolio_daily_returns < -parametric_var_percent
+portfolio_returns_250d = portfolio_daily_returns[-250:]
+violations = portfolio_returns_250d < -parametric_var_percent
 num_violations = int(violations.sum())
-total_days = len(portfolio_daily_returns)
+total_days = len(portfolio_returns_250d)
 expected_violations = total_days * (1 - Confidence_level)
 
 if num_violations <= 4:
