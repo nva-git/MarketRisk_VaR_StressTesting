@@ -108,11 +108,11 @@ plt.show()
 
 # Chart 2: Backtesting Over Time & VaR Violations
 plt.figure(figsize=(10, 5))
-plt.plot(portfolio_daily_returns.index, portfolio_daily_returns * 100, color="teal", label="Daily Portfolio Return")
+plt.plot(portfolio_returns_250d.index, portfolio_returns_250d * 100, color="teal", label="Daily Portfolio Return")
 plt.axhline(-parametric_var_percent * 100, color="crimson", linestyle="--", linewidth=2, label="99% VaR Threshold")
 
-violation_dates = portfolio_daily_returns[violations].index
-violation_values = portfolio_daily_returns[violations] * 100
+violation_dates = portfolio_returns_250d[violations].index
+violation_values = portfolio_returns_250d[violations] * 100
 plt.scatter(violation_dates, violation_values, color="black", marker="x", s=50, zorder=5, label="Basel Breaches")
 
 plt.title("Historical Model Backtesting & Breaches", fontweight="bold")
@@ -124,7 +124,7 @@ plt.show()
 
 # Chart 3: Distribution Histogram & Parametric Cutoff
 plt.figure(figsize=(8, 5))
-plt.hist(portfolio_daily_returns * 100, bins=50, color="gainsboro", edgecolor="gray", alpha=0.7)
+plt.hist(portfolio_returns_250d * 100, bins=50, color="gainsboro", edgecolor="gray", alpha=0.7)
 plt.axvline(-parametric_var_percent * 100, color="crimson", linestyle="-", linewidth=2.5, label="Parametric VaR Line")
 plt.title("99% Parametric VaR Distribution Tail", fontweight="bold")
 plt.xlabel("Daily Portfolio Return (%)")
